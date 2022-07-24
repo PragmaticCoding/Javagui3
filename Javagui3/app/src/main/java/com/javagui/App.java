@@ -1,5 +1,7 @@
 package com.javagui;
 
+import com.database.DataBaseController;
+import com.javagui.mvc.Controller;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,9 +9,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
-import com.database.*;
 
 /**
  * JavaFX App
@@ -21,7 +20,9 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
+//        scene = new Scene(loadFXML("primary"), 640, 480);
+        scene = new Scene(new Controller(stage).getView());
+        scene.getStylesheets().add(App.class.getResource("default.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }
